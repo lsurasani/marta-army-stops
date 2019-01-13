@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +9,7 @@ class App extends Component {
     componentDidMount() {
         // Call our fetch function below once the component mounts
         this.callBackendAPI()
-            .then(res => this.setState({ data: res.express }))
+            .then(res => this.setState({ data: res.body }))
             .catch(err => console.log(err));
     }
 
