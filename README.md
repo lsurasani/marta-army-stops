@@ -1,5 +1,6 @@
 # marta-army-stops
 
-###To run this project locally on your computer
+### To run this project locally on your computer
 
-1. Clone the project 
+1. Use this to clone the repository: https://help.github.com/articles/cloning-a-repository/
+2. Go to the file directory (marta-army 
