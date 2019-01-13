@@ -5,10 +5,10 @@ const request = require('request')
 const app = express()
 const port = process.env.PORT || 5000
 
-app.use(favicon(__dirname + '/build/favicon.ico'));
+app.use(favicon(__dirname + '/client/build/favicon.ico'));
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.listen(port, () => console.log(`Your server is up and running on port ${port}`))
 
@@ -21,7 +21,7 @@ app.get('/express_backend', (req, res) => {
 })
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 
