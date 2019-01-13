@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import './App.css';
+import 'typeface-roboto';
 
 class App extends Component {
     state = {
@@ -26,10 +33,49 @@ class App extends Component {
 
     render() {
         const { data } = this.state;
+
+        const TableData = (props) => {
+            return (
+                data && (
+                    data.departures.map((d) => {
+                        const newTime = moment(d.time, "HH:mm:ss A")
+                        const formatTime = newTime.format("h:mm A")
+                        if (newTime.isBefore(moment())) {
+                            return null
+                        }
+                        return (
+                            <TableRow key={d.trip_id}>
+                                <TableCell>{d.route}</TableCell>
+                                <TableCell>{d.destination}</TableCell>
+                                <TableCell>{d.wait}</TableCell>
+                                <TableCell>{formatTime}</TableCell>
+                            </TableRow>
+                        )
+                    })
+                    
+                )
+            )
+        }
+
         return (
             <div className="main">
                 <header>MARTA Army</header>
-                {console.log(data)}
+                {data && <h3>Current Stop Data for: {data.stop_name}</h3>}
+                {data && data.departures && (
+                    <Table className="tables">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Route Number</TableCell>
+                                <TableCell>Destination</TableCell>
+                                <TableCell>Arriving in...(min)</TableCell>
+                                <TableCell>Expected Arrival Time</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableData/>
+                        </TableBody>
+                    </Table>
+                )}
             </div>
         );
   }
