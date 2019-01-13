@@ -3,6 +3,10 @@ const request = require('request')
 const app = express()
 const port = process.env.PORT || 5000
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
 app.listen(port, () => console.log(`Your server is up and running on port ${port}`))
 
 app.get('/express_backend', (req, res) => {
@@ -12,6 +16,10 @@ app.get('/express_backend', (req, res) => {
         }
     })
 })
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+});
 
 
 
