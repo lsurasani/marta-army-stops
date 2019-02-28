@@ -50,6 +50,7 @@ class App extends Component {
 
         let getPosition = function (options) {
             return new Promise(function(resolve, reject) {
+                console.log(navigator.geolocation)
                 if (navigator.geolocation) navigator.geolocation.getCurrentPosition(resolve, reject, options)
             })
         }
