@@ -60,7 +60,6 @@ class App extends Component {
                 resolve(showPosition(options))
             })
         }
-
         getPosition().then((position) => {
             getStop(position).then(() => {
                 this.callBackendAPI(stopID)
@@ -94,7 +93,6 @@ class App extends Component {
 
     render() {
         const { data } = this.state;
-
         const TableData = (props) => {
             return (
                 data && data.departures.length && (
